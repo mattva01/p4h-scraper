@@ -7,6 +7,7 @@ import (
 	"github.com/headzoo/surf"
 	"net/url"
 	"os"
+	"runtime"
 	"strings"
 )
 
@@ -39,6 +40,9 @@ func parseDetail(e *Entry, c chan int) {
 }
 
 func main() {
+	//Effective multicore
+	runtime.GOMAXPROCS(runtime.NumCPU())
+
 	var entrylist []*Entry
 
 	browser := surf.NewBrowser()
